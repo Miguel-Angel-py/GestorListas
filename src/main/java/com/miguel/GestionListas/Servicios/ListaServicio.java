@@ -18,25 +18,52 @@ public class ListaServicio {
         return listaRepositorio.findAll();
     }
 
+    public ListaModelo devolverListaPorId(Integer id) {
+        try{
+            return listaRepositorio.findById(id).get();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public ResponseEntity<HttpStatus> crearLista(ListaModelo lista) {
-        return listaRepositorio.save(lista);
+        try{
+            listaRepositorio.save(lista);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity<HttpStatus> borrarLista(Integer Id) {
-        return listaRepositorio.deleteById(Id);
+        try{
+        listaRepositorio.deleteById(Id);
+        return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity<HttpStatus> actualizarLista(Integer Id, ListaModelo listaNueva) {
-        if(listaRepositorio.existsById(Id)){
-            listaRepositorio.deleteById(Id);
-            listaRepositorio.save(listaNueva);
+        try {
+            if (listaRepositorio.existsById(Id)) {
+                listaRepositorio.deleteById(Id);
+                listaRepositorio.save(listaNueva);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        else{
+        catch(Exception e){
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public ListaModelo devolverListaPorId(Integer id) {
-    }
 }

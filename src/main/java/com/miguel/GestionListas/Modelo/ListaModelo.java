@@ -2,6 +2,8 @@ package com.miguel.GestionListas.Modelo;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Listas")
 public class ListaModelo {
@@ -12,6 +14,9 @@ public class ListaModelo {
 
     @Column(name = "Titulo")
     private String Titulo;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lista")
+    private List<ElementoModelo> elementos;
 
     public String getTitulo() {
         return Titulo;

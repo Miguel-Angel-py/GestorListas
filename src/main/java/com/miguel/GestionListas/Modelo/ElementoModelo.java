@@ -13,6 +13,9 @@ public class ElementoModelo {
     @Column(name="Texto")
     private String Texto;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lista_id")
+    private ListaModelo lista;
 
     public String getTexto() {
         return Texto;
