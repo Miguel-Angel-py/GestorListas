@@ -18,6 +18,9 @@ public class ElementoServicio {
     @Autowired
     private ElementoRepositorio elementoRepositorio;
 
+    @Autowired
+    private ListaServicio listaServicio;
+
     public List<ElementoModelo> devolverElementos() {
         return elementoRepositorio.findAll();
     }
@@ -33,9 +36,9 @@ public class ElementoServicio {
         }
     }
 
-    public ResponseEntity<HttpStatus> crearElemento(ElementoModelo elemento) {
+    public ResponseEntity<HttpStatus> crearElemento(ElementoModelo elemento, Integer ListaId) {
         try {
-
+            elemento.setLista(listaServicio.devolverListaPorId(ListaId));
             elementoRepositorio.save(elemento);
             return new ResponseEntity<>(HttpStatus.OK);
 

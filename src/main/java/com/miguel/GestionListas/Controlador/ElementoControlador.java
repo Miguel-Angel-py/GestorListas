@@ -1,6 +1,7 @@
 package com.miguel.GestionListas.Controlador;
 
 import com.miguel.GestionListas.Modelo.ElementoModelo;
+import com.miguel.GestionListas.Modelo.ListaModelo;
 import com.miguel.GestionListas.Servicios.ElementoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,9 +27,9 @@ public class ElementoControlador {
         return elementoServicio.devolverElementoPorId(Id);
     }
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> crearElemento(@RequestBody ElementoModelo elemento){
-        return elementoServicio.crearElemento(elemento);
+    @PostMapping("/{ListaId}")
+    public ResponseEntity<HttpStatus> crearElemento(@RequestBody ElementoModelo elemento, @PathVariable Integer ListaId){
+        return elementoServicio.crearElemento(elemento, ListaId);
     }
 
     @DeleteMapping("/{Id}")
