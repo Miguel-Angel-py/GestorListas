@@ -1,7 +1,6 @@
 package com.miguel.GestionListas.Controlador;
 
 import com.miguel.GestionListas.Modelo.ElementoModelo;
-import com.miguel.GestionListas.Modelo.ListaModelo;
 import com.miguel.GestionListas.Servicios.ElementoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

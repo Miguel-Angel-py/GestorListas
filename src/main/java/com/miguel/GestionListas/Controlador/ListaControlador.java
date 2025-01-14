@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -19,7 +18,7 @@ public class ListaControlador {
 
     @GetMapping
     public List<ListaModelo> devolverListas(){
-        return listaServicio.devolverListas();
+       return listaServicio.devolverListas();
     }
 
     @GetMapping("/{Id}")
@@ -27,7 +26,7 @@ public class ListaControlador {
         return listaServicio.devolverListaPorId(Id);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<HttpStatus> crearLista(@RequestBody ListaModelo lista){
         return listaServicio.crearLista(lista);
     }

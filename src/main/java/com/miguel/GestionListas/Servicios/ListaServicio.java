@@ -65,5 +65,4 @@ public class ListaServicio {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 }

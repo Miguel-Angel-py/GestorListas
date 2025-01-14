@@ -1,13 +1,16 @@
 package com.miguel.GestionListas.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Elementos")
+@Getter
+@Setter
 public class ElementoModelo {
 
     @Id
@@ -19,23 +22,8 @@ public class ElementoModelo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lista_id")
+    @JsonIgnore
     private ListaModelo lista;
-
-    public String getTexto() {
-        return Texto;
-    }
-
-    public void setTexto(String texto) {
-        Texto = texto;
-    }
-
-    public ListaModelo getLista() {
-        return lista;
-    }
-
-    public void setLista(ListaModelo lista) {
-        this.lista = lista;
-    }
 
     public ElementoModelo(String texto) {
         Texto = texto;
@@ -44,5 +32,8 @@ public class ElementoModelo {
     public ElementoModelo(ListaModelo lista, String texto) {
         this.lista = lista;
         Texto = texto;
+    }
+    public ElementoModelo(){
+
     }
 }

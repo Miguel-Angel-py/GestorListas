@@ -2,13 +2,15 @@ package com.miguel.GestionListas.Modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "Listas")
 public class ListaModelo {
 
@@ -22,30 +24,6 @@ public class ListaModelo {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "lista")
     private List<ElementoModelo> elementos;
 
-    public String getTitulo() {
-        return Titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        Titulo = titulo;
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public List<ElementoModelo> getElementos() {
-        return elementos;
-    }
-
-    public void setElementos(List<ElementoModelo> elementos) {
-        this.elementos = elementos;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
     public ListaModelo(String titulo, List<ElementoModelo> elementos) {
         Titulo = titulo;
         this.elementos = elementos;
@@ -53,5 +31,9 @@ public class ListaModelo {
 
     public ListaModelo(String titulo) {
         Titulo = titulo;
+    }
+
+    public ListaModelo(){
+
     }
 }
